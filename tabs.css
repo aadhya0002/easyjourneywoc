@@ -1,0 +1,66 @@
+.tabs{
+    display:flex;
+   
+    font-family:arial;
+  }
+  
+  .tabs-button{
+      cursor:pointer;
+     height:30px;
+      background-color:whitesmoke;
+      padding:10px 16px;
+  }
+  
+  .tabs-button:active{
+      font-weight: bold;
+      border-bottom:4px solid green;
+  }
+  .tabs-content{
+     padding:15px;
+    order:1;
+    width:100%;
+  }
+
+
+.content-1{
+ 
+background-size: cover ;
+padding-top: 20px;
+
+background-repeat:no-repeat;
+background-image:url(./content-1-background.jpg);
+background-size:cover;
+background-repeat:no-repeat;
+
+}
+
+
+.content-2{
+  background-image:url(tirain.jpg);
+ height: 800px;
+ background-repeat:no-repeat;
+ background-size: cover;
+ padding-top: 70px;
+ 
+
+}
+.content-4{
+  background-image: url(rail.jpg);
+  background-repeat: no-repeat;
+background-size:cover;
+height:700px;
+padding-top:70px;
+}
+
+.content-3{
+  height:100%;
+  width:100%;
+}
+
+
+#contactus{
+   height:600px;
+   padding-top:300px;
+  /* margin-top:500px; */
+}
+

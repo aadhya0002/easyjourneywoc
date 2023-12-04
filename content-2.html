@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="homepage-tabs.css">
+    <link rel="stylesheet" href="tabs.css">
+</head>
+<body>
+    <div class = "header">
+        <div>
+            <h1><span style="color:red;">E</span>asy <span style="color:red;">J</span>ourney</h1>
+        </div>
+        <nav>
+            <ul id = "MenuItems">
+                <li><a href ='./homepage.html' id="register_in_header">Register</a></li>
+                <li><a href ='./content-2.html'  >Login</a></li>
+               
+                <li><a href ='./content-4.html' >Book Ticket</a></li>
+                <li><a href ='./content-3.html' >Contact Us </a></li>
+            </ul>
+    </nav>
+
+</div>
+
+    <div id ="login-content" class="content-2">
+        <div  class="login">
+            <img  class="logo" src="imgs/logo.png">
+            <h1 style="text-shadow: 1px 2px 2px black,0 0 25px blue,0 0 5px darkblue;color:green;">Log In </h1>
+                <form ><input class="box1" type="email" placeholder="Email" id="emaillogin"></form>
+                <form ><input class="box2" type="password" name="password" id="passwordlogin" placeholder="Password" autocomplete="off
+                    "></form>
+                <!-- <a href="http://127.0.0.1:5503/forget.html" target="_blank">Forgot Password?</a> -->
+                <div class="but" id="login"><button class="login-button">Login</button></div>
+        </div>        
+       </div>
+       
+</body>
+  <script type="module" src="./firebase.js"></script> 
+<!-- module in js is file containing related code -->
+</html>
