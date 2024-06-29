@@ -5,159 +5,139 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="homepage-tabs.css">
     <link rel="stylesheet" href="trains.css">
     <link rel="stylesheet" href="tabs.css">
     <link rel="stylesheet" href="trains_info.css">
 </head>
 <body>
-    <div class = "header">
+    <div class="header">
         <div>
             <h1><span style="color:red;">E</span>asy <span style="color:red;">J</span>ourney</h1>
         </div>
         <nav>
-            <ul id = "MenuItems">
-              <li><a href ='./homepage.html' id="register_in_header">Register</a></li>
-              <li><a href ='./content-2.html'  >Login</a></li>
-             
-              <li><a href ='./content-4.html' >Book Ticket</a></li>
-              <li><a href ='./content-3.html' >Contact Us </a></li>
+            <ul id="MenuItems">
+              <li><a href='./homepage.html' id="register_in_header">Register</a></li>
+              <li><a href='./content-2.html'>Login</a></li>
+              <li><a href='./content-4.html'>Book Ticket</a></li>
+              <li><a href='./content-3.html'>Contact Us</a></li>
             </ul>
-    </nav>
+        </nav>
+    </div>
 
-</div>
+    <div id="bookticket" class="content-4">
+        <form class="booking-section">
+            <img class="g20" src="imgs/g20-logo.png">
+            <h2 style="text-shadow:2px 2px 5px grey,0 0 25px blue,0 0 5px darkblue; color:black">SEARCH TRAINS</h2>
+            <div>
+                <img class="icons" src="imgs/senticon.png">
+                <input class="sent" type="text" placeholder="From" id="from" required>
+                <input type="date" class="right-box-above" id="date" required>
+            </div>
+            <div class="bet"><span style='font-size:20px;'>&#8645;</span></div>
+            <div>
+                <img class="icons" src="imgs/location.png">
+                <input class="box-train" type="text" placeholder="To" id="to" required>
+            </div>
+            <div></div>
+            <button class="search" type="submit" onClick="search(event)">Search</button>
+        </form>
+    </div>
 
-<div id ="bookticket" class="content-4">
-  <form class="booking-section"> <img class="g20" src="imgs/g20-logo.png">
-      <h2 style="text-shadow:2px 2px 5px grey,0 0 25px blue,0 0 5px darkblue; color:black">SEARCH TRAINS</h2>
-      <div>
-         <img class="icons" src="imgs/senticon.png">
-         <input class="sent" type="text" placeholder="From" id="from" required>
-         <input type="date" class="right-box-above"  id="date" required>
-      </div>
-      <div class="bet"><span style='font-size:20px;'>&#8645;</span></div>
-      
-      <div>
-        <img class="icons" src="imgs/location.png">
-         <input  class="box-train" type="form"  placeholder="To" id="to" required>
-         
+    <div class="bgd-color">
+        <div class="inside-content">
+            <div class="close" id="close">+</div>
+            <h1>Trains Information</h1>
+            <div class="all_trains" id="table-body">
+                <div class="trains_indi">
+                    <div class="col1">
+                        <div id="col1row1"></div>
+                        <br><div id="col1row2"></div>
+                    </div>
+                    <div class="col2">
+                        <div id="col2row1"></div>
+                        <br><div id="col2row2"></div>
+                    </div>
+                    <div class="col3">
+                        <h6></h6>
+                    </div>
+                    <div class="col4">
+                        <div id="col4row1"></div>
+                        <br><div id="col4row2"></div>
+                    </div>
+                </div>
+            </div>
         </div>
-      <div>
-       
-      </div>
-      <button class="search" onClick="search()">Search</button> 
-     
-    </form>
-     </div>
-
-
-       <div class="bgd-color">
-      <div class="inside-content">
-      <div class="close" id="close">+</div>
-      <h1>Trains Information</h1>
-
-      <div class="all_trains" id="table-body">
-       
-       <div class="trains_indi" > 
-
-        <div class="col1" >
-          <div id="col1row1"></div>
-       <br ><div id="col1row2" ></div>
     </div>
 
-    <div class="col2">
-    <div id="col2row1"></div>
-    <br><div id="col2row2" ></div>
-    </div>
+    <script>
+        const from = document.getElementById('from');
+        const to = document.getElementById('to');
+        const date = document.getElementById('date');
 
-    <div class="col3">
-     <h6></h6></div>
-    
-    <div class="col4">
-    <div id="col4row1"></div>
-    <br ><div id="col4row2"></div>
-    </div>
-    
-    </div>
+        function search(event) {
+            event.preventDefault();
+            const url = `https://irctc1.p.rapidapi.com/api/v3/trainBetweenStations?fromStationCode=${from.value}&toStationCode=${to.value}&dateOfJourney=${date.value}`;
+            const options = {
+            	method: 'GET',
+            	headers: {
+            		'x-rapidapi-key': '35f4ce7284mshc46164c2895bfe3p138cf7jsncef86d34feac',
+            		'x-rapidapi-host': 'irctc1.p.rapidapi.com'
+            	}
+            };
+            
+            try {
+            	fetch(url, options).then((res)=>{
+                    return res.json();
+                }).then((trains)=>{
+                    console.log(trains);
+                    let data = "";
+                    for (let i = 0; i < trains.data.length; i++) {
+                        data += `
+                        <div class="trains_indi">
+                            <div class="col1">
+                                <div id="col1row1">${trains.data[i].train_name}</div>
+                                <br><div id="col1row2">${trains.data[i].train_number}</div>
+                            </div>
+                            <div class="col2">
+                                <div id="col2row1">${trains.data[i].from_sta}</div>
+                                <br><div id="col2row2">${trains.data[i].from_station_name}</div>
+                            </div>
+                            <div class="col3">
+                                <span class="circle-1 pull-left"></span>
+                                <span class="circle-2 pull-right"></span>
+                                <span class="divider-line"></span>
+                                ${trains.data[i].duration} hours
+                            </div>
+                            <div class="col4">
+                                <div id="col4row1">${trains.data[i].to_sta}</div>
+                                <br><div id="col4row2">${trains.data[i].to_station_name}</div>
+                            </div>
+                        </div>
+                        <br>`;
+                    }
+                    data += `
+                    <center>
+                        <a class="link-redirect" target="_blank" href="https://www.railyatri.in/train-ticket?utm_source=tt_landing_dweb_header_ttb">BOOK TICKET</a>
+                    </center>
+                    <br>
+                    <center>
+                        <a target="_blank" href="./tourist_places.html">SEARCH FOR TOURIST PLACES</a>
+                    </center>`;
+                    document.querySelector('.bgd-color').style.display = 'flex';
+                    window.scrollTo(0, document.body.scrollHeight);
+                    document.getElementById("table-body").innerHTML = data;
+                })
+                }
+                catch (error) {
+                	console.error(error);
+                }
+        }
 
-    <!-- <a class="link-redirect" target="_blank" href="https://www.railyatri.in/train-ticket?utm_source=tt_landing_dweb_header_ttb">BOOK TICKET<a> -->
-      </div>
-
-      </div>
-    </div> 
-     
- 
-
-
-     <script>
- 
-        const from=document.getElementById('from')
-        const to=document.getElementById('to')
-        const date=document.getElementById('date')
-       content=document.getElementById('')
-       
-        
-        function search(e)
- {    
-   event.preventDefault();
-  console.log(date)
-
-    
-     url=`https://railway-w6eh.onrender.com/proxy?from=${from.value}&to=${to.value}&date=${date.value}`;
-     fetch(url).then((response)=>{
-
-console.log(response.ok);
-console.log (response.status);
-       return response.json().then((trains)=>{   
-      let data="";
-      console.log(trains)
-      console.log((trains.data[0]));
-      console.log(trains.data.length);
-
-  for(i=0;i<trains.data.length;i++){
-   console.log(trains.data[i].train_base.train_name);
-data+=
-   `<div class=trains_indi> <div class="col1" ><div id="col1row1">${trains.data[i].train_base.train_name}</div>
-        <br ><div id="col1row2" >${trains.data[i].train_base.train_no}</div>
-    </div>
-   <div class="col2">
-    <div id="col2row1">${trains.data[i].train_base.from_time}</div>
-    <br><div id="col2row2" >${trains.data[i].train_base.from_stn_name}</div>
-   </div>
-   <div class="col3"><span class="circle-1 pull-left"></span>
-    <span class="circle-2 pull-right"></span>
-    <span class="divider-line"></span>
-    ${trains.data[i].train_base.travel_time} hours</div>
-
-   <div class="col4">
-    <div id="col4row1">${trains.data[i].train_base.to_time}</div>
-    <br ><div id="col4row2">${trains.data[i].train_base.to_stn_name}</div>
-   </div></div>
-   <br>`
-
- 
-        document.querySelector('.bgd-color').style.display='flex';
-  window.scrollTo(0,document.body.scrollHeight);
-  //document.body.scrollheight -to scroll to bottom
- }
- data+=`<center><a class="link-redirect" target="_blank" href="https://www.railyatri.in/train-ticket?utm_source=tt_landing_dweb_header_ttb">BOOK TICKET<a></center>
-  <br>
-  <center><a target="_blank" href="./tourist_places.html">SEARCH FOR TOURIST PLACES</a></center> `
-  document.getElementById("table-body").innerHTML=data;
-}
- 
- )
-}
-     )
- }
-   document.getElementById('close').addEventListener('click',
-    function(){
-        document.querySelector('.bgd-color').style.display='none';
-    });
-   
-
-        </script> 
-       
+        document.getElementById('close').addEventListener('click', function () {
+            document.querySelector('.bgd-color').style.display = 'none';
+        });
+    </script>
 </body>
-
 </html>
