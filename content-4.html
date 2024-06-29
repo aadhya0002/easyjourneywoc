@@ -12,32 +12,46 @@
     <link rel="stylesheet" href="trains_info.css">
 </head>
 <body>
+
     <div class="header">
-        <div>
-            <h1><span style="color:red;">E</span>asy <span style="color:red;">J</span>ourney</h1>
-        </div>
-        <nav>
-            <ul id="MenuItems">
-              <li><a href ='./index.html' id="register_in_header">Register</a></li>
-              <li><a href='./content-2.html'>Login</a></li>
-              <li><a href='./content-4.html'>Book Ticket</a></li>
-              <li><a href='./content-3.html'>Contact Us</a></li>
-            </ul>
-        </nav>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container-fluid">
+                <h1 class="navbar-brand" href="#">Easy Journey</h1>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./index.html">Register</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./content-2.html">Login</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./content-4.html">Book Ticket</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="./content-3.html">Contact Us</a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </nav>
     </div>
 
     <div id="bookticket" class="content-4">
         <form class="booking-section">
-            <img class="g20" src="g20-logo.png">
+            <img class="g20" src="imgs/g20-logo.png">
             <h2 style="text-shadow:2px 2px 5px grey,0 0 25px blue,0 0 5px darkblue; color:black">SEARCH TRAINS</h2>
             <div>
-                <img class="icons" src="senticon.png">
+                <img class="icons" src="imgs/senticon.png">
                 <input class="sent" type="text" placeholder="From" id="from" required>
                 <input type="date" class="right-box-above" id="date" required>
             </div>
             <div class="bet"><span style='font-size:20px;'>&#8645;</span></div>
             <div>
-                <img class="icons" src="location.png">
+                <img class="icons" src="imgs/location.png">
                 <input class="box-train" type="text" placeholder="To" id="to" required>
             </div>
             <div></div>
@@ -82,8 +96,8 @@
             const options = {
             	method: 'GET',
             	headers: {
-            		'x-rapidapi-key': '35f4ce7284mshc46164c2895bfe3p138cf7jsncef86d34feac',
-            		'x-rapidapi-host': 'irctc1.p.rapidapi.com'
+            		'x-rapidapi-key': '4a0ed72ff4msh059ebe8edc26c7ap15e0fbjsn46f1993fffc0',
+		            'x-rapidapi-host': 'irctc1.p.rapidapi.com'
             	}
             };
             
@@ -139,5 +153,7 @@
             document.querySelector('.bgd-color').style.display = 'none';
         });
     </script>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 </body>
 </html>
